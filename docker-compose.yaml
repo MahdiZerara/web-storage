@@ -1,0 +1,27 @@
+version: "3.8"
+name: "web-storage"
+
+services:
+  postgres-storage:
+    image: postgres_storage_image
+    container_name: postgres_storage
+    build:
+      dockerfile: build/Dockerfile
+      context: .
+    ports:
+      - ${POSTGRES_DB_PORT}:${POSTGRES_DB_PORT}
+    env_file:
+      - .env
+      - .local.env
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    networks:
+      - web-team-network
+
+volumes:
+  db-data:
+
+networks:
+  web-team-network:
+    driver: bridge
+    name: web_team_network
