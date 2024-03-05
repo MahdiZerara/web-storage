@@ -12,6 +12,7 @@ services:
       - ${POSTGRES_DB_PORT}:${POSTGRES_DB_PORT}
     env_file:
       - .env
+      - .local.env
     volumes:
       - db-data:/var/lib/postgresql/data
     networks:
